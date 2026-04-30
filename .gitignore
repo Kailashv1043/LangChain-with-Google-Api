@@ -1,0 +1,56 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+#dot.env
+.env
+
+# --- Environment Variables (CRITICAL) ---
+# Store API keys (OpenAI, Anthropic, etc.) here; NEVER commit this file
+.env
+.env.*
+!.env.example
+
+# --- Python / Virtual Environments ---
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.venv/
+env/
+build/
+dist/
+*.egg-info/
+
+# --- LangChain & LLM Specific ---
+# Local vector database storage (e.g., ChromaDB, FAISS)
+**/chroma/
+**/faiss/
+*.index
+*.pkl
+
+# LangChain tracing and local logs
+.langchain/
+langchain.log
+
+# LangSmith (if using local offline exports)
+.langsmith/
+
+# --- FastAPI / Uvicorn ---
+# Temporary files or test coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# --- IDEs & OS ---
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
