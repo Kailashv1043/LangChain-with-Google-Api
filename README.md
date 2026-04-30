@@ -1,18 +1,22 @@
-# 🚀 Smart Knowledge Base API (RAG System)
+# 🚀 LangChain with Google API (RAG Backend)
 
-A backend system built with FastAPI and LangChain that allows users to upload documents and ask questions based on their content using Retrieval-Augmented Generation (RAG).
+A backend application built using FastAPI and LangChain that integrates Google Generative AI (Gemini) to perform document-based question answering using a Retrieval-Augmented Generation (RAG) pipeline.
 
 ---
 
 ## 🧠 Overview
 
-This project implements a simple **RAG (Retrieval-Augmented Generation)** pipeline:
+This project demonstrates how to build a real-world LLM-powered backend system using LangChain and Google API.
 
-* Upload documents (PDF)
-* Convert text into embeddings
+It allows users to:
+
+* Upload PDF documents
+* Convert documents into embeddings
 * Store embeddings in a vector database
-* Retrieve relevant context for user queries
-* Generate answers using an LLM
+* Ask questions based on uploaded content
+* Receive context-aware answers
+
+👉 This follows the **RAG (Retrieval-Augmented Generation)** architecture, a common pattern in modern AI systems.
 
 ---
 
@@ -20,71 +24,82 @@ This project implements a simple **RAG (Retrieval-Augmented Generation)** pipeli
 
 * **Backend:** FastAPI
 * **LLM:** Google Gemini API
-* **Embeddings:** Google Generative AI Embeddings
-* **Vector Database:** ChromaDB
-* **Database (optional):** SQLite
+* **Framework:** LangChain
+* **Vector DB:** ChromaDB
+* **Database:** SQLite (optional for history)
 * **Language:** Python
 
 ---
 
 ## ⚙️ Features
 
-* 📄 Upload PDF documents
+* 📄 Upload and process PDF documents
+* ✂️ Automatic text chunking
 * 🔍 Semantic search using embeddings
-* 🤖 Context-aware question answering (RAG)
-* ⚡ Fast API endpoints
-* 🧠 Uses real-world LLM pipeline
+* 🤖 Context-based question answering
+* ⚡ FastAPI-based REST endpoints
+* 🧠 Real-world RAG pipeline implementation
 
 ---
 
 ## 📂 Project Structure
 
-```
+```bash
 app/
 │
-├── main.py
-├── routes/
+├── main.py                # FastAPI entry point
+│
+├── routes/               # API routes
 │   ├── upload.py
 │   ├── query.py
 │
-├── services/
+├── services/             # Core logic
 │   ├── rag_pipeline.py
 │   ├── embedding.py
 │
-├── utils/
+├── utils/                # Helper functions
 │   ├── file_loader.py
 │   ├── chunking.py
 │
 ├── core/
-│   ├── config.py
+│   ├── config.py         # Environment variables
 │
-└── db/
+└── db/                   # Vector DB storage
 ```
 
 ---
 
 ## 🔄 How It Works
 
-1. **Upload Document**
+1. **Document Upload**
 
-   * PDF is loaded and split into chunks
+   * User uploads a PDF via API
 
-2. **Embedding**
+2. **Processing**
+
+   * PDF → text extraction → chunking
+
+3. **Embedding**
 
    * Each chunk is converted into vector embeddings
 
-3. **Storage**
+4. **Storage**
 
-   * Stored in Chroma vector database
+   * Stored in ChromaDB for similarity search
 
-4. **Query**
+5. **Query**
 
    * User asks a question
-   * System retrieves relevant chunks
 
-5. **Response**
+6. **Retrieval**
 
-   * LLM generates answer using retrieved context
+   * Relevant chunks are retrieved from vector DB
+
+7. **Answer Generation**
+
+   * Gemini LLM generates response using context
+
+👉 This pipeline is widely used in LLM applications ([Wikipedia][1])
 
 ---
 
@@ -93,8 +108,8 @@ app/
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-username/rag-fastapi-project.git
-cd rag-fastapi-project
+git clone https://github.com/Kailashv1043/LangChain-with-Google-Api.git
+cd LangChain-with-Google-Api
 ```
 
 ---
@@ -103,8 +118,8 @@ cd rag-fastapi-project
 
 ```bash
 python -m venv venv
-source venv/bin/activate   # mac/linux
-venv\Scripts\activate      # windows
+venv\Scripts\activate     # Windows
+source venv/bin/activate  # Mac/Linux
 ```
 
 ---
@@ -112,16 +127,22 @@ venv\Scripts\activate      # windows
 ### 3. Install dependencies
 
 ```bash
+pip install .
+```
+
+or
+
+```bash
 pip install -r requirements.txt
 ```
 
 ---
 
-### 4. Add environment variables
+### 4. Configure environment variables
 
 Create a `.env` file:
 
-```
+```env
 GOOGLE_API_KEY=your_api_key_here
 ```
 
@@ -135,7 +156,7 @@ uvicorn app.main:app --reload
 
 ---
 
-### 6. Open API Docs
+### 6. Open API docs
 
 ```
 http://127.0.0.1:8000/docs
@@ -173,7 +194,7 @@ POST /ask
 
 ```json
 {
-  "answer": "..."
+  "answer": "Generated answer based on document context"
 }
 ```
 
@@ -181,9 +202,10 @@ POST /ask
 
 ## ⚠️ Notes
 
-* Ensure your PDF contains readable text (not scanned images)
-* Do not expose your API key publicly
-* ChromaDB stores embeddings locally in `/db`
+* Only text-based PDFs are supported
+* API key must be valid and active
+* ChromaDB stores embeddings locally
+* Avoid uploading large files initially
 
 ---
 
@@ -192,19 +214,21 @@ POST /ask
 * Add chat history
 * Add authentication (JWT)
 * Add source citations
-* Add multi-document support
+* Add multi-file support
 * Deploy using Docker
 
 ---
 
 ## 🙌 Acknowledgements
 
+* LangChain (LLM framework)
+* Google Generative AI (Gemini API)
 * FastAPI
-* LangChain
-* Google Generative AI
 
 ---
 
 ## 📄 License
 
-This project is for learning purposes.
+This project is for learning and educational purposes.
+
+[1]: https://en.wikipedia.org/wiki/LangChain?utm_source=chatgpt.com "LangChain"
