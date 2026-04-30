@@ -1,3 +1,12 @@
+## 💡 Why this project?
+
+This project demonstrates a real-world RAG backend system similar to those used in:
+- AI chatbots
+- document assistants
+- enterprise knowledge search tools
+
+---
+
 # 🚀 LangChain with Google API (RAG Backend)
 
 A backend application built using FastAPI and LangChain that integrates Google Generative AI (Gemini) to perform document-based question answering using a Retrieval-Augmented Generation (RAG) pipeline.
@@ -17,6 +26,16 @@ It allows users to:
 * Receive context-aware answers
 
 👉 This follows the **RAG (Retrieval-Augmented Generation)** architecture, a common pattern in modern AI systems.
+
+---
+
+## 🧪 Example
+
+**Question:**
+"What is this document about?"
+
+**Answer:**
+"This document explains..."
 
 ---
 
@@ -199,6 +218,10 @@ POST /ask
 ```
 
 ---
+
+![API Docs](screenshots/Ask_question.png)
+![API Docs](screenshots/UploadDocument.png)
+
 
 ## ⚠️ Notes
 
