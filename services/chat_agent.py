@@ -1,6 +1,7 @@
 import uuid
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
+from langchain_core.output_parsers import StrOutputParser 
 
 
 from langchain_core.runnables.history import RunnableWithMessageHistory
@@ -21,7 +22,7 @@ print (prompt.input_variables)
 
 
 llm= ChatGoogleGenerativeAI(model="gemini-2.5-flash",google_api_key=GOOGLE_API_KEY)
-chain= prompt | llm
+chain= prompt | llm | StrOutputParser()
 store={}
 
 def get_session_history(session_id:str):
