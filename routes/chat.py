@@ -21,6 +21,6 @@ def chat(req:ChatRequest):
         config=config
     )
     return {
-        "response":response.content,
+        "response":response,
         "session_id":session_id
     }

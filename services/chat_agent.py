@@ -18,8 +18,6 @@ prompt=ChatPromptTemplate.from_messages([
     MessagesPlaceholder(variable_name="history"),
     ("human","{input}")
 ])
-print (prompt.input_variables)
-
 
 llm= ChatGoogleGenerativeAI(model="gemini-2.5-flash",google_api_key=GOOGLE_API_KEY)
 chain= prompt | llm | StrOutputParser()
