@@ -1,16 +1,19 @@
 from langchain_chroma import Chroma
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
-from config import GOOGLE_API_KEY
 import os 
 import time
+from dotenv import load_dotenv
 
-os.environ["GOOGLE_API_KEY"]=GOOGLE_API_KEY
+load_dotenv()
+
+api_key = os.getenv("GOOGLE_API_KEY")
 
 def get_vectorstore(chunks):
-    time.sleep(2)  # small delay before heavy call
+    time.sleep(2)  
 
     embeddings = GoogleGenerativeAIEmbeddings(
-        model="gemini-embedding-001"
+        model="gemini-embedding-001",
+        google_api_key=api_key
     )
 
     vectorstore = Chroma.from_documents(
